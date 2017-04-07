@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BankBuddy</string>
+    <string name="jobs_action_text">JOBS</string>
+    <string name="contacts_action_text">CONTACTS</string>
+    <string name="engage_action_text">ENGAGE</string>
+    <string name="engage_text">ENGAGE</string>
 </resources>
