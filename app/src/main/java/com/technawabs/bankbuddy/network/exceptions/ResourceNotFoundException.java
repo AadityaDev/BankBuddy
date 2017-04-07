@@ -2,7 +2,7 @@ package com.technawabs.bankbuddy.network.exceptions;
 
 import android.support.annotation.Nullable;
 
-import com.aditya.edforaapp.constants.AppConstant;
+import com.technawabs.bankbuddy.constants.AppConstant;
 
 import org.json.JSONException;
 import org.json.JSONObject;

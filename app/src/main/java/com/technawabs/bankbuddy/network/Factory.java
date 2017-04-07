@@ -2,7 +2,7 @@ package com.technawabs.bankbuddy.network;
 
 import android.os.StrictMode;
 
-import com.aditya.edforaapp.services.SongService;
+import com.technawabs.bankbuddy.services.SongService;
 
 import net.jcip.annotations.GuardedBy;
 
@@ -19,7 +19,6 @@ public class Factory {
     private static OkHttpClient mOkHttpClient;
     @GuardedBy("LOCK")
     private static SongService songService;
-
 
     public static OkHttpClient getOkHTTPClient() {
         synchronized (LOCK) {

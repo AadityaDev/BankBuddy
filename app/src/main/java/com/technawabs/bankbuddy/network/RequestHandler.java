@@ -2,14 +2,14 @@ package com.technawabs.bankbuddy.network;
 
 import android.util.Log;
 
-import com.aditya.edforaapp.constants.AppConstant;
-import com.aditya.edforaapp.network.exceptions.AccessDeniedException;
-import com.aditya.edforaapp.network.exceptions.ApiStatusException;
-import com.aditya.edforaapp.network.exceptions.HttpException;
-import com.aditya.edforaapp.network.exceptions.ResourceNotFoundException;
-import com.aditya.edforaapp.network.exceptions.ServerErrorException;
-import com.aditya.edforaapp.network.exceptions.UnauthorizedAccessException;
-import com.aditya.edforaapp.network.exceptions.UnsupportedFileTypeException;
+import com.technawabs.bankbuddy.constants.AppConstant;
+import com.technawabs.bankbuddy.network.exceptions.AccessDeniedException;
+import com.technawabs.bankbuddy.network.exceptions.ApiStatusException;
+import com.technawabs.bankbuddy.network.exceptions.HttpException;
+import com.technawabs.bankbuddy.network.exceptions.ResourceNotFoundException;
+import com.technawabs.bankbuddy.network.exceptions.ServerErrorException;
+import com.technawabs.bankbuddy.network.exceptions.UnauthorizedAccessException;
+import com.technawabs.bankbuddy.network.exceptions.UnsupportedFileTypeException;
 
 import org.json.JSONArray;
 import org.json.JSONException;

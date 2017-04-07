@@ -2,13 +2,13 @@ package com.technawabs.bankbuddy.services;
 
 import android.util.Log;
 
-import com.aditya.edforaapp.concurrency.ExecutorUtils;
-import com.aditya.edforaapp.constants.AppAPI;
-import com.aditya.edforaapp.constants.AppConstant;
-import com.aditya.edforaapp.network.RequestGenerator;
-import com.aditya.edforaapp.network.RequestHandler;
-import com.aditya.edforaapp.utils.StringUtils;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.technawabs.bankbuddy.concurrency.ExecutorUtils;
+import com.technawabs.bankbuddy.constants.AppAPI;
+import com.technawabs.bankbuddy.constants.AppConstant;
+import com.technawabs.bankbuddy.network.RequestGenerator;
+import com.technawabs.bankbuddy.network.RequestHandler;
+import com.technawabs.bankbuddy.utils.StringUtils;
 
 import org.json.JSONArray;
 

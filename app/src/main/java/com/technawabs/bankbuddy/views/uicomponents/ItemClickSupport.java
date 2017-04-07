@@ -1,9 +1,9 @@
-package com.technawabs.bankbuddy.custom_views;
+package com.technawabs.bankbuddy.views.uicomponents;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.aditya.edforaapp.R;
+import com.technawabs.bankbuddy.R;
 
 public class ItemClickSupport {
     private final RecyclerView mRecyclerView;

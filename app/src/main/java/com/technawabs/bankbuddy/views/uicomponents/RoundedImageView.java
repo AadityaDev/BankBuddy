@@ -1,4 +1,4 @@
-package com.technawabs.bankbuddy.custom_views;
+package com.technawabs.bankbuddy.views.uicomponents;
 
 import android.content.Context;
 import android.graphics.Bitmap;

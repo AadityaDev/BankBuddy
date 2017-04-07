@@ -1,6 +1,6 @@
 package com.technawabs.bankbuddy.network.exceptions;
 
-import com.aditya.edforaapp.constants.AppConstant;
+import com.technawabs.bankbuddy.constants.AppConstant;
 
 public class AccessDeniedException extends HttpException {
     public AccessDeniedException() {

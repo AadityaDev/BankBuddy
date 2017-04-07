@@ -2,7 +2,7 @@ package com.technawabs.bankbuddy.network;
 
 import android.support.annotation.NonNull;
 
-import com.aditya.edforaapp.constants.AppAPI;
+import com.technawabs.bankbuddy.constants.AppAPI;
 
 import okhttp3.MediaType;
 import okhttp3.Request;
