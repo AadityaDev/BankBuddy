@@ -33,7 +33,7 @@ public class ImageFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image, container, false);
-        ((ImageView) view.findViewById(R.id.imagefragment_image)).setImageResource(R.mipmap.ic_launcher_round);
+//        ((ImageView) view.findViewById(R.id.imagefragment_image)).setImageResource(R.mipmap.ic_launcher_round);
 
         return view;
     }

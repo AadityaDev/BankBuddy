@@ -11,9 +11,10 @@ import com.technawabs.bankbuddy.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PagerTabWidget extends TabWidget implements View.OnClickListener,ViewPager.OnPageChangeListener{
+public class PagerTabWidget extends TabWidget implements View.OnClickListener, ViewPager.OnPageChangeListener {
+
     protected ViewPager mViewPager;
-    protected final List<View> tabViews  = new ArrayList<View>();
+    protected final List<View> tabViews = new ArrayList<View>();
     protected Context mContext;
     protected OnTabSelectedListener mOnTabSelectedListener;
 
@@ -36,13 +37,13 @@ public class PagerTabWidget extends TabWidget implements View.OnClickListener,Vi
         init(context);
     }
 
-    protected void init(Context context){
+    protected void init(Context context) {
         this.mContext = context;
         //tabViews = new ArrayList<View>();
     }
 
 
-    public void setDividerInvisible(){
+    public void setDividerInvisible() {
         setDividerDrawable(R.color.black);
     }
 
@@ -53,10 +54,10 @@ public class PagerTabWidget extends TabWidget implements View.OnClickListener,Vi
     public void setmViewPager(ViewPager mViewPager) {
         this.mViewPager = mViewPager;
         this.mViewPager.setOnPageChangeListener(this);
-        if(tabViews.size() > 0) setCurrentTab(0);
+        if (tabViews.size() > 0) setCurrentTab(0);
     }
 
-    public void addTab(View view){
+    public void addTab(View view) {
         tabViews.add(view);
         addView(view);
         view.setOnClickListener(this);
@@ -64,7 +65,7 @@ public class PagerTabWidget extends TabWidget implements View.OnClickListener,Vi
 
     @Override
     public void onClick(View v) {
-        if(mViewPager != null){
+        if (mViewPager != null) {
             mViewPager.setCurrentItem(tabViews.indexOf(v));
         }
     }
@@ -77,7 +78,7 @@ public class PagerTabWidget extends TabWidget implements View.OnClickListener,Vi
     public void onPageSelected(int position) {
 
         setCurrentTab(position);
-        mOnTabSelectedListener.onSelected(tabViews,position);
+        mOnTabSelectedListener.onSelected(tabViews, position);
 
     }
 
@@ -86,7 +87,7 @@ public class PagerTabWidget extends TabWidget implements View.OnClickListener,Vi
 
     }
 
-    public static  interface OnTabSelectedListener {
+    public static interface OnTabSelectedListener {
 
         void onSelected(List<View> tabViews, int position);
 
