@@ -1,12 +1,14 @@
 package com.technawabs.bankbuddy.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +24,11 @@ import com.technawabs.bankbuddy.fragments.fingerprint.FingerPrintAuthCallback;
 import com.technawabs.bankbuddy.fragments.fingerprint.FingerPrintAuthHelper;
 import com.technawabs.bankbuddy.utils.Utility;
 
-public class FingerprintScanner extends BaseFragment implements FingerPrintAuthCallback, View.OnClickListener {
+public class FingerprintScanner extends BaseFragment implements FingerPrintAuthCallback {
 
     private TextView mAuthMsgTv;
     private Button mGoToSettingsBtn;
-
+    private int position;
     private TextView fingerprintSupport;
     private TextView cancelAction;
     private ImageView dialpadAction;
@@ -37,12 +39,15 @@ public class FingerprintScanner extends BaseFragment implements FingerPrintAuthC
         // Required empty public constructor
     }
 
-//    public static FingerprintScanner newInstance(String param1, String param2) {
-//        FingerprintScanner fragment = new FingerprintScanner();
-//        Bundle args = new Bundle();
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public static FingerprintScanner newInstance(int mPosition) {
+        FingerprintScanner fragment = new FingerprintScanner();
+        fragment.setPosition(mPosition);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,8 +60,9 @@ public class FingerprintScanner extends BaseFragment implements FingerPrintAuthC
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fingerprint_scanner, container, false);
+        final View view = inflater.inflate(R.layout.fragment_fingerprint_scanner, container, false);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             mFingerPrintAuthHelper = FingerPrintAuthHelper.getHelper(getContext(), this);
@@ -67,10 +73,6 @@ public class FingerprintScanner extends BaseFragment implements FingerPrintAuthC
         fingerprintSupport = (TextView) view.findViewById(R.id.fingerprint_support);
         cancelAction = (TextView) view.findViewById(R.id.cancel_action);
         dialpadAction = (ImageView) view.findViewById(R.id.dialpad_action);
-
-        fingerprintSupport.setOnClickListener(this);
-        cancelAction.setOnClickListener(this);
-        dialpadAction.setOnClickListener(this);
         cancelAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,10 +83,8 @@ public class FingerprintScanner extends BaseFragment implements FingerPrintAuthC
         dialpadAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Dialpad Clicked", Toast.LENGTH_SHORT).show();
                 Log.d(getTAG(), "Dialpad Clicked");
-                Intent dial = new Intent(Intent.ACTION_DIAL);
-                startActivity(dial);
+                openPasswordScreen();
             }
         });
 
@@ -104,7 +104,6 @@ public class FingerprintScanner extends BaseFragment implements FingerPrintAuthC
         });
 
         mAuthMsgTv = (TextView) view.findViewById(R.id.auth_message_tv);
-
         return view;
     }
 
@@ -124,6 +123,12 @@ public class FingerprintScanner extends BaseFragment implements FingerPrintAuthC
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
     }
 
     @Override
@@ -188,38 +193,23 @@ public class FingerprintScanner extends BaseFragment implements FingerPrintAuthC
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fingerprint_image:
-                break;
-            case R.id.dialpad_action:
-                Toast.makeText(getContext(), "Dialpad Clicked", Toast.LENGTH_SHORT).show();
-                Log.d(getTAG(), "Dialpad Clicked");
-                break;
-            case R.id.cancel_action:
-                Toast.makeText(getContext(), "Cancel Clicked", Toast.LENGTH_SHORT).show();
-                Log.d(getTAG(), "Cancel Clicked");
-                fingerprintSupport.setText("cancel");
-                break;
-        }
-    }
+//    @Override
+//    public void onFragmentInteraction(Uri uri) {
+//
+//    }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+
         void onFragmentInteraction(Uri uri);
+
     }
 
+    private void openPasswordScreen() {
+        PasswordKeyboard passwordKeyboard = new PasswordKeyboard();
+        FragmentManager fragmentManager = this.getFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.tabWidget,passwordKeyboard).commit();
+    }
 
     private void initializeScanner(@NonNull String algorithm) {
 //        try {
@@ -238,5 +228,6 @@ public class FingerprintScanner extends BaseFragment implements FingerPrintAuthC
 //
 //        }
     }
+
 
 }

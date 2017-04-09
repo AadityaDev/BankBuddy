@@ -1,6 +1,5 @@
 package com.technawabs.bankbuddy.activities;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,20 +11,18 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.technawabs.bankbuddy.R;
 import com.technawabs.bankbuddy.fragments.FingerprintScanner;
-import com.technawabs.bankbuddy.fragments.ImageFragment;
+import com.technawabs.bankbuddy.fragments.PasswordKeyboard;
 import com.technawabs.bankbuddy.views.uicomponents.PagerTabWidget;
 
 import java.util.List;
 
-public class SignInActivity extends BaseActivity implements FingerprintScanner.OnFragmentInteractionListener{
+public class SignInActivity extends BaseActivity implements FingerprintScanner.OnFragmentInteractionListener,PasswordKeyboard.OnFragmentInteractionListener {
 
-    List<String> list;
-    private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;
     private PagerTabWidget pagerTabWidget;
     private ViewPager viewPager;
     private PagerTabAdapter pagerTabAdapter;
@@ -34,15 +31,11 @@ public class SignInActivity extends BaseActivity implements FingerprintScanner.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        initTabWidget();
-        Log.d(getTAG(), "SignIn");
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
 
-        FingerprintScanner fingerprintScanner = new FingerprintScanner();
-        fragmentTransaction.replace(R.id.frame, fingerprintScanner);
-        fragmentTransaction.commit();
-//        startActivity(new Intent(getApplicationContext(),FingerprintScanner.class));
+        initTabWidget();
+        if (savedInstanceState == null) {
+
+        }
     }
 
     private void initTabWidget() {
@@ -70,10 +63,6 @@ public class SignInActivity extends BaseActivity implements FingerprintScanner.O
 
     }
 
-//    @Override
-//    public void onFragmentInteraction(Uri uri) {
-//
-//    }
 }
 
 class PagerTabAdapter extends FragmentPagerAdapter {
@@ -84,11 +73,12 @@ class PagerTabAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return ImageFragment.newInstance(position);
+        return FingerprintScanner.newInstance(position);
     }
 
     @Override
     public int getCount() {
         return 3;
     }
+
 }
