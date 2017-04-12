@@ -51,7 +51,7 @@ public class PasswordKeyboard extends Fragment {
         passwordNum2 = (TextView) view.findViewById(R.id.password_num_2);
         passwordNum3 = (TextView) view.findViewById(R.id.password_num_3);
         passwordNum4 = (TextView) view.findViewById(R.id.password_num_4);
-        numberGrid = (GridView) view.findViewById(R.id.number_grid);
+//        numberGrid = (GridView) view.findViewById(R.id.number_grid);
 //        numberGrid.set
         return view;
     }

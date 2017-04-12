@@ -205,10 +205,12 @@ public class FingerprintScanner extends BaseFragment implements FingerPrintAuthC
     }
 
     private void openPasswordScreen() {
-        PasswordKeyboard passwordKeyboard = new PasswordKeyboard();
+        PasswordKeyboard passwordKeyboard = PasswordKeyboard.newInstance("as");
         FragmentManager fragmentManager = this.getFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.tabWidget,passwordKeyboard).commit();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frag, passwordKeyboard)
+                .addToBackStack(getTAG())
+                .commit();
     }
 
     private void initializeScanner(@NonNull String algorithm) {
